@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    let globalId = 0;
+    function mark(id){
+        const parent = document.getElementById(id)
+        parent.children[2].innerHTML = "Otha mudichitan"
+    }
+    function createChild(title,description,id){
+        const child = document.createElement("div")
+        const grandChild1 = document.createElement("div")
+        grandChild1.innerHTML = title
+        const grandChild2 = document.createElement("div")
+        grandChild2.innerHTML = description
+        const grandChild3 = document.createElement("button")
+        grandChild3.innerHTML = "Mark as Done"
+        grandChild3.setAttribute("onclick",`mark(${id})`)
+        child.appendChild(grandChild1)
+        child.appendChild(grandChild2)
+        child.appendChild(grandChild3)
+        child.setAttribute("id",id)
+        return child
+    }
+    function addtodo(){
+            const title = document.getElementById("title").value
+            const description = document.getElementById("description").value
+            const container = document.getElementById("container")
+            container.appendChild(createChild(title,description,globalId++))
+            //<div> The above line will do the same given below
+                // <div>Title</div>
+                // <div>Description</div>
+                // <button>Add Todo</button>
+            //</div>
+    }
+</script>
