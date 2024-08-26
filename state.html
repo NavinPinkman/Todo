@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+ <body>
+    <div>
+        <input id="title" type="text" placeholder="title">
+        <br><br>
+        <input id="description" type="text" placeholder="description">
+        <br><br>
+        <div id="container"></div>
+    </div>
+</body>
+    <script>
+        function createChild(title,description,id){
+            const child = document.createElement("div")
+            const grandChild1 = document.createElement("div")
+            grandChild1.innerHTML = title
+            const grandChild2 = document.createElement("div")
+            grandChild2.innerHTML = description
+            const grandChild3 = document.createElement("button")
+            grandChild3.innerHTML = "Mark as Done"
+            grandChild3.setAttribute("onclick",`mark(${id})`)
+            child.appendChild(grandChild1)
+            child.appendChild(grandChild2)
+            child.appendChild(grandChild3)
+            child.setAttribute("id",id)
+            return child
+        }
+        function updateAccToState(state){
+            const parent = document.getElementById("container")
+            parent.innerHTML = ""
+            for(let i = 0;i<state.length;i++){
+                parent.appendChild(createChild(state[i].title,state[i].description,state[i].id))
+            }
+        }
+        updateAccToState([{
+            title : "Go to Gym",
+            description : "Go to Gym by 8 ",
+            id : 12
+        },
+        {
+            title : "Go to Gym",
+            description : "Go to Gym by 79 ",
+            id : 12
+         }])
+    </script>
+</html>
